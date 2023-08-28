@@ -9,8 +9,8 @@ import {
 
 function feed(navigateTo) {
   const section = document.createElement('section');
-  const nav = document.createElement('nav');
-  const select = document.createElement('select');
+  //const nav = document.createElement('nav');
+  //const select = document.createElement('select');
   const option1 = document.createElement('option');
   const option2 = document.createElement('option');
   const write = document.createElement('button');
@@ -23,23 +23,18 @@ function feed(navigateTo) {
   const nameSteps = document.createElement('input');
   const add = document.createElement('button');
   const showPostFeed = document.createElement('div');
-
-
-  // Help Hannia
-
-
   logo.src = './imagenes/image.png';
   write.textContent = 'Añade una Receta';
-  option1.value = 'Mejores Recetas';
-  option1.textContent = 'Mejores Recetas';
-  option2.value = 'Usuarios';
-  option2.textContent = 'Usuarios';
+  // option1.value = 'Mejores Recetas';
+  // option1.textContent = 'Mejores Recetas';
+  // option2.value = 'Usuarios';
+  // option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
   formRecipe.style.display = 'none';
   nameSteps.type = 'text';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
-  logoutButtom.textContent = 'Cerrar Sesión 💨';
+  logoutButtom.textContent = 'Cerrar Sesión :guión:';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
@@ -49,17 +44,16 @@ function feed(navigateTo) {
     showPostFeed.innerHTML = '';
     allRecipes.forEach((recipeContent) => {
       const postRecipe = `
-      <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />By: ${recipeContent.user}</h5>
         <div class="postRecipe" id="post-${recipeContent.id}">
+        <h5 class="user"><img class="perfile" src="./imagenes/Profil.png" />${recipeContent.user}</h5>
           <p class="name">${recipeContent.name}</p>
           <p>Pasos:</p>
           <textarea  type="text" id="edit-${recipeContent.id}" class="steps" disabled>${recipeContent.steps}</textarea>
-          <h5 class="user">👤 ${recipeContent.user.split('@')[0]}</h5>
           <div class="footer-post">
-          <p>${recipeContent.likes}</p>
-          <button id="like-${recipeContent.id}">⭐</button>
-          <button class="edit" id="b-edit-${recipeContent.id}">🖋️</button>
-          <button class="delete" id="delete-${recipeContent.id}">🗑️</button>
+          <p class="recipeLikes">${recipeContent.likes}</p>
+          <button id="like-${recipeContent.id}">:estrella:</button>
+          <button class="edit" id="b-edit-${recipeContent.id}">:pluma_estilográfica_abajo_a_la_izquierda:</button>
+          <button class="delete" id="delete-${recipeContent.id}">:papelera:</button>
           </div>
         </div>`;
       showPostFeed.innerHTML += postRecipe;
@@ -133,8 +127,8 @@ function feed(navigateTo) {
   modalContent.append(message, deleteButton, cancelButton);
   modal.appendChild(modalContent);
 
-  function awaitModal(event, key) {
-    modalContent.addEventListener('click', () => {
+  function awaitModal(key) {
+    modalContent.addEventListener('click', (event) => {
       const targetId = event.target.id;
       if (targetId.includes('deleteButton')) {
         deletePost(key.replace('delete-', ''))
@@ -156,53 +150,13 @@ function feed(navigateTo) {
       }
     });
   }
-  const modal = document.createElement('div');
-  modal.className = 'modal';
-  const modalContent = document.createElement('div');
-  modalContent.className ='modal-content';
-  const message = document.createElement('p');
-  message.textContent = '¿Estás seguro que deseas eliminar tu receta?';
-
-  const deleteButton = document.createElement('button');
-  deleteButton.id = 'deleteButton';
-  deleteButton.textContent = 'Eliminar';
-
-  const cancelButton = document.createElement('button');
-  cancelButton.id = 'cancelButton';
-  cancelButton.textContent = 'Cancelar';
-
-  modalContent.append(message, deleteButton, cancelButton);
-  modal.appendChild(modalContent);
-
-  modalContent.addEventListener('click', async (event) => {
-    const targetId = event.target.id;
-    if (targetId === 'deleteButton') {
-        const key = targetId.replace('delete-', ''); // Asegúrate de obtener la key correcta aquí
-        deletePost(key)
-            .then((data) => {
-                querySnapshot()
-                    .then((doc) => {
-                        console.log('docu', doc);
-                        showAllRecipes(doc);
-                        modal.style.display = 'none'; // Cerrar la ventana modal después de eliminar
-                    })
-                    .catch((error) => {
-                        console.error('Error al obtener posts', error);
-                    });
-            })
-            .catch((error) => {
-                console.log('error delete', error);
-            });
-    } else if (targetId === 'cancelButton') {
-        modal.style.display = 'none'; // Cerrar la ventana modal en caso de cancelar
-    }
-});
-
-  modal.style.display='none'
 
   section.addEventListener('click', async (event) => {
     const key = (event.target.id);
-
+    if (key.includes('delete-')) {
+      modal.style.display = 'block';
+      awaitModal(key);
+    } else if (key.includes('b-edit-')) {
       const uidPost = key.replace('b-edit-', '');
       const postText = document.getElementById(`edit-${uidPost}`);
       postText.removeAttribute('disabled');
@@ -229,12 +183,10 @@ function feed(navigateTo) {
           console.log('error delete', error);
         });
     }
-
   });
-  section.append(logo, showPostFeed, modal, formRecipe, write, nav, logoutButtom);
+  section.append(logo, showPostFeed, modal, formRecipe, write, logoutButtom);
   formRecipe.append(nameSteps, recipe, add, MessageError, MessageOk);
-  nav.append(select);
-  select.append(option1, option2);
+
   return section;
 }
 
