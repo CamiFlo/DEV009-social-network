@@ -1,7 +1,6 @@
 import { createUser, signInWithGoogle } from '../lib';
 import logoCocinarte from '../imagenes/logoCocinarte.png';
-import avatar from '../imagenes/avatar.png'
-
+import avatar from '../imagenes/avatar.png';
 
 function register(navigateTo) {
   const section = document.createElement('section');

@@ -1,6 +1,6 @@
 import { signInEP, signInWithGoogle, currentChange } from '../lib/index.js';
 import logoCocinarte from '../imagenes/logoCocinarte.png';
-import logo_google from '../imagenes/logo_google.avif';
+import logoGoogle from '../imagenes/logoGoogle.avif';
 
 function home(navigateTo) {
   const section = document.createElement('section');
@@ -9,8 +9,8 @@ function home(navigateTo) {
   const login = document.createElement('button');
   const errorMessage = document.createElement('p');
   const registerUser = document.createElement('button');
-  const passwordLogin = document.createElement('input');
   const emailLogin = document.createElement('input');
+  const passwordLogin = document.createElement('input');
   const buttonGoogle = document.createElement('button');
   const h3 = document.createElement('h3');
 
@@ -26,7 +26,7 @@ function home(navigateTo) {
   errorMessage.style.color = 'beige';
 
   const googleLogo = document.createElement('img');
-  googleLogo.src = logo_google;
+  googleLogo.src = logoGoogle;
   buttonGoogle.appendChild(googleLogo);
 
   buttonGoogle.classList.add('google-button');
@@ -67,7 +67,7 @@ function home(navigateTo) {
       errorMessage.textContent = 'Por favor, ingresa un correo y una contraseña válida.';
     }
   });
-  section.append(logo, title, passwordLogin, emailLogin, login);
+  section.append(logo, title, emailLogin, passwordLogin, login);
   section.append(errorMessage, registerUser, buttonGoogle, h3);
   return section;
 }

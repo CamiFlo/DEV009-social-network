@@ -143,7 +143,6 @@ button {
   margin-bottom: 20px;
   padding: 15px;
   text-align: start;
-  margin-left: 10px;
   position: relative;
  }
 
@@ -157,11 +156,6 @@ button {
   align-items: center;
  }
 
-.postRecipe p,
-.postRecipe textarea,
-.postRecipe .footer-post {
-  margin: 0;
-}
 
 h5 {
   color: #3E3B3B ;
@@ -240,17 +234,6 @@ h5, .perfile {
   align-items: center;
   display: flex;
   bottom: -20px;
-}
-
-.modal-content{
-  position: relative; /* Relativo con respecto al contenedor -modal- */
-  background-color: white;
-  margin: auto; /* Centrada */
-  padding: 20px;
-  width: 60%;
-  animation-name: animarsuperior;
-  animation-duration: 0.5s
-  
 }
 
 

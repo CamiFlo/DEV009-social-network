@@ -6,15 +6,15 @@ import {
   editTextPost,
   likePost,
 } from '../lib/dataBase';
-import logoCocinarte from '../imagenes/logoCocinarte.png'
-import avatar from '../imagenes/avatar.png'
+import logoCocinarte from '../imagenes/logoCocinarte.png';
+import avatar from '../imagenes/avatar.png';
 
 function feed(navigateTo) {
   const section = document.createElement('section');
-  //const nav = document.createElement('nav');
-  //const select = document.createElement('select');
-  const option1 = document.createElement('option');
-  const option2 = document.createElement('option');
+  // const nav = document.createElement('nav');
+  // const select = document.createElement('select');
+  //  const option1 = document.createElement('option');
+  // const option2 = document.createElement('option');
   const write = document.createElement('button');
   const logo = document.createElement('img');
   const logoutButtom = document.createElement('button');
@@ -32,14 +32,14 @@ function feed(navigateTo) {
   // option2.value = 'Usuarios';
   // option2.textContent = 'Usuarios';
   recipe.placeholder = 'ingresa tu receta';
-  recipe.className ='recipe';
+  recipe.className = 'recipe';
   formRecipe.style.display = 'none';
-  formRecipe.className ='formAddRecipe';
+  formRecipe.className = 'formAddRecipe';
   nameSteps.type = 'text';
   nameSteps.className = 'nameRecipe';
   nameSteps.placeholder = 'Nombre de la receta';
   add.textContent = 'Agregar';
-  logoutButtom.textContent = 'Cerrar Sesión 💨';
+  logoutButtom.textContent = 'Cerrar Sesión';
   logoutButtom.className = 'logout';
   MessageOk.style.color = 'green';
   MessageError.style.color = 'grey';
